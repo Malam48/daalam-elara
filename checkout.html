@@ -1,19 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Checkout</title>
+<title>Checkout - Daalam Elara</title>
+<style>
+body {
+font-family: Arial;
+background: #f5f5f5;
+padding: 20px;
+}
+
+.container {
+max-width: 500px;
+margin: auto;
+background: white;
+padding: 20px;
+border-radius: 10px;
+}
+
+input, select {
+width: 100%;
+padding: 10px;
+margin: 8px 0;
+}
+
+button {
+width: 100%;
+padding: 12px;
+background: black;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+button:hover {
+background: #333;
+}
+</style>
 </head>
 
 <body>
 
-<h2>Redirecting to Payment...</h2>
+<div class="container">
 
-<button onclick="pay()">Pay with Stripe</button>
+<h2>Checkout</h2>
+
+<!-- CUSTOMER INFO -->
+<input type="text" id="name" placeholder="Full Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<input type="text" id="address" placeholder="Delivery Address">
+
+<!-- PAYMENT METHOD -->
+<select id="payment">
+<option value="JazzCash">JazzCash</option>
+<option value="Easypaisa">Easypaisa</option>
+<option value="Bank Transfer">Bank Transfer</option>
+<option value="COD">Cash on Delivery</option>
+</select>
+
+<!-- ORDER NOTE -->
+<input type="text" id="product" placeholder="Product Name / Size / Qty">
+
+<button onclick="placeOrder()">Place Order</button>
+
+</div>
 
 <script>
-function pay() {
-window.location.href =
-"https://buy.stripe.com/test_your_payment_link_here";
+function placeOrder() {
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let address = document.getElementById("address").value;
+let payment = document.getElementById("payment").value;
+let product = document.getElementById("product").value;
+
+// simple invoice ID
+let invoice = "DE-" + Math.floor(Math.random() * 100000);
+
+let message =
+"🧾 NEW ORDER\n" +
+"Invoice: " + invoice + "\n" +
+"Name: " + name + "\n" +
+"Phone: " + phone + "\n" +
+"Address: " + address + "\n" +
+"Product: " + product + "\n" +
+"Payment: " + payment;
+
+// YOUR WHATSAPP NUMBER (replace this)
+let whatsappNumber = "923110815848";
+
+let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
+
+alert("Order sent! We will contact you soon.");
 }
 </script>
 
