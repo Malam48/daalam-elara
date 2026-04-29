@@ -4,18 +4,20 @@ getFirestore,
 collection,
 addDoc,
 getDocs,
-deleteDoc,
-doc
+doc,
+updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 import {
 getAuth,
-signInWithEmailAndPassword
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
 apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_DOMAIN",
+authDomain: "YOUR_AUTH_DOMAIN",
 projectId: "YOUR_PROJECT_ID",
 storageBucket: "YOUR_BUCKET",
 messagingSenderId: "XXXX",
@@ -26,4 +28,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { db, auth, collection, addDoc, getDocs, deleteDoc, doc, signInWithEmailAndPassword };
+export {
+db, auth,
+collection, addDoc, getDocs, doc, updateDoc,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged
+};
